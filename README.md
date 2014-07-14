@@ -1,4 +1,4 @@
 euler
 =====
 
-Taking a stab at Project Euler
+Taking a stab at [Project Euler](https://projecteuler.net/).

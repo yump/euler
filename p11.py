@@ -43,7 +43,7 @@ grid = """08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 grid = np.array([ [ int(w) for w in l.split() ] for l in grid.splitlines() ])
 
 def prod(seq):
-    result = next(seq)
+    result = 1
     for x in seq:
         result *= x
     return result

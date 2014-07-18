@@ -1,4 +1,4 @@
-#!/usr/bin/env pythoh3
+#!/usr/bin/env python3
 # Copyright (C) 2014 Russell Haley
 # 
 # This file is part of euler.

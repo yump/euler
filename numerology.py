@@ -40,12 +40,13 @@ def primefactors(n):
     # Prime factorization only defined on positive integers.
     if not isinstance(n,int):
         raise TypeError("Argument must be a positive integer.")
-    if n <= 0:
+    if n < 1:
         raise ValueError("Argument must be a positive integer.")
     result = []
     bigpart = n
-    for div in itertools.chain([2],range(3,n,2)):
-        if div**2 > bigpart:
+    # Try 2,3,5,7,9...
+    for div in itertools.chain([2],itertools.count(3,2)):
+        if div*div > bigpart:
             break
         while bigpart % div == 0:
             result.append(div)

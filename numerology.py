@@ -16,6 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import itertools
+import collections
 import math
 
 def power_set(seq, proper=False):
@@ -47,6 +48,28 @@ def primefactors(n):
     if bigpart != 1:
         result.append(bigpart)
     return result
+
+def proper_divisors(n):
+    """
+    Generator which yields the proper divisors of n. These are the
+    numbers less than n which divide n evenly, including 1.
+    """
+    # A number is a proper factor of n iff it is a product of a strict
+    # subset of n's prime factors. Multiplication commutes, so factors
+    # with multiplicity > 1 do not generate unique divisors if they are
+    # re-ordered.
+    # We collapse the prime factors into a multiset and use the fact 
+    # that each prime factor can appear [0,multiplicity] times in the
+    # factorization of a proper factor.
+    factorization = collections.Counter(primefactors(n))
+    subprod_lists = [ 
+                       [ fact**power for power in range(mult+1) ]
+                       for fact, mult in factorization.items()
+                    ]
+    for pdiv_facts in itertools.product(*subprod_lists):
+        proper_div = prod(pdiv_facts)
+        if proper_div != n:
+            yield proper_div
 
 def isprime(n):
     """Test if n is prime."""

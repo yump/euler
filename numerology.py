@@ -49,27 +49,24 @@ def primefactors(n):
         result.append(bigpart)
     return result
 
-def proper_divisors(n):
+def divisors(n):
     """
-    Generator which yields the proper divisors of n. These are the
-    numbers less than n which divide n evenly, including 1.
+    Generator which yields the divisors of n. These are the numbers
+    which divide n evenly, including 1 and n.
     """
-    # A number is a proper factor of n iff it is a product of a strict
-    # subset of n's prime factors. Multiplication commutes, so factors
-    # with multiplicity > 1 do not generate unique divisors if they are
-    # re-ordered.
-    # We collapse the prime factors into a multiset and use the fact 
-    # that each prime factor can appear [0,multiplicity] times in the
-    # factorization of a proper factor.
+    # A number is a divisor of n iff it is a product of a subset of n's
+    # prime factors. Multiplication commutes, so factors with
+    # multiplicity > 1 do not generate unique divisors if they are
+    # re-ordered.  We collapse the prime factors into a multiset and use
+    # the fact that each prime factor can appear [0,multiplicity] times
+    # in the factorization of a divisor.
     factorization = collections.Counter(primefactors(n))
     subprod_lists = [ 
                        [ fact**power for power in range(mult+1) ]
                        for fact, mult in factorization.items()
                     ]
-    for pdiv_facts in itertools.product(*subprod_lists):
-        proper_div = prod(pdiv_facts)
-        if proper_div != n:
-            yield proper_div
+    for div_facts in itertools.product(*subprod_lists):
+        yield prod(div_facts)
 
 def isprime(n):
     """Test if n is prime."""

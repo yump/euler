@@ -96,11 +96,11 @@ def primes(n):
             break
 
 def fibonacci():
+    """Yield the fibonacci sequence."""
     buf = collections.deque([1,1], maxlen=2)
     while True:
         yield buf[0]
         buf.append(sum(buf))
-
 
 def prod(seq):
     """

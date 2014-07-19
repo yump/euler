@@ -16,8 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from p3 import primefactors
-from p11 import prod
+from numerology import primefactors, prod, power_set
 import itertools
 from collections import Counter
 
@@ -27,16 +26,10 @@ def trinums():
         n += i
         yield n
 
-def subsets(seq):
-    seq = tuple(seq)
-    for size in range(len(seq)+1):
-        for combo in itertools.combinations(seq,size):
-            yield combo
-
 def numfactors(n):
     nfactors = 0
     factorization = Counter(primefactors(n))
-    for subset in subsets(factorization.keys()):
+    for subset in power_set(factorization.keys()):
         # Each subset of the prime factorization contributes a number of
         # divisors equal to the product ot the multiplicities of the factors
         # in the subset.

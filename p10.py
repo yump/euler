@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from p7 import isprime
+from numerology import isprime
 
 # Yes the Sieve of Eratosthenes would be faster.  But 2 million is a
 # small number and I already have this code.

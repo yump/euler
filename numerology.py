@@ -95,6 +95,13 @@ def primes(n):
         if nprimes == n:
             break
 
+def fibonacci():
+    buf = collections.deque([1,1], maxlen=2)
+    while True:
+        yield buf[0]
+        buf.append(sum(buf))
+
+
 def prod(seq):
     """
     Calculate the product of a sequence.

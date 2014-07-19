@@ -18,12 +18,17 @@
 import itertools
 import math
 
-def power_set(seq):
+def power_set(seq, proper=False):
     """
-    Generator which yields all subsets of a sequence.
+    Generator which yields all subsets of a sequence. If proper is True,
+    only yield proper subsets.
     """
     seq = tuple(seq)
-    for size in range(len(seq)+1):
+    if proper:
+        maxsize = len(seq)
+    else:
+        maxsize = len(seq) - 1
+    for size in range(maxsize+1):
         for combo in itertools.combinations(seq,size):
             yield combo
 

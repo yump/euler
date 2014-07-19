@@ -29,15 +29,9 @@ def trinums():
 def numfactors(n):
     nfactors = 0
     factorization = Counter(primefactors(n))
-    for subset in power_set(factorization.keys()):
-        # Each subset of the prime factorization contributes a number of
-        # divisors equal to the product ot the multiplicities of the factors
-        # in the subset.
-
-        # For example:
-        # 12 -> (2,2,3) -> ((),(2),(3),(2,3)) -> ((1),(2,4),(3),(6,12))
-        nfactors += prod(factorization[k] for k in subset)
-    return nfactors
+    # Each prime factor can appear [0,multiplicity] times in the prime
+    # factorization of a factor of n.
+    return prod(mult+1 for mult in factorization.values())
     
 def getanswer():
     return next(n for n in trinums() if numfactors(n) > 500)

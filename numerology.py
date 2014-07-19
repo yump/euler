@@ -37,6 +37,11 @@ def primefactors(n):
     """
     Get a list of the prime factors of n.
     """
+    # Prime factorization only defined on positive integers.
+    if not isinstance(n,int):
+        raise TypeError("Argument must be a positive integer.")
+    if n <= 0:
+        raise ValueError("Argument must be a positive integer.")
     result = []
     bigpart = n
     for div in itertools.chain([2],range(3,n,2)):

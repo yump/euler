@@ -29,17 +29,19 @@ def power_set(seq):
 
 def primefactors(n):
     """
-    Generator which yields the prime factors of n.
+    Get a list of the prime factors of n.
     """
+    result = []
     bigpart = n
     for div in itertools.chain([2],range(3,n,2)):
         if div**2 > bigpart:
             break
         while bigpart % div == 0:
-            yield div
+            result.append(div)
             bigpart = bigpart // div
     if bigpart != 1:
-        yield bigpart
+        result.append(bigpart)
+    return result
 
 def isprime(n):
     """Test if n is prime."""

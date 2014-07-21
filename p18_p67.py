@@ -19,6 +19,7 @@
 import sys
 import collections
 import itertools
+from numerology import slidewin
 
 # 1. The best sum from a node is the value at that node plus the maximum
 #    of the best sums from the two nodes below.
@@ -30,15 +31,6 @@ import itertools
 # to the nodes above, so I wrote a directed graph class.  Alas, I did
 # not realize how simple the solution was until I tried to figure out
 # how to turn the input file into a directed graph.
-
-def slidewin(iterable, length):
-    """Sliding window generator."""
-    it = iter(iterable)
-    window = collections.deque(itertools.islice(it,length), maxlen=length)
-    yield window
-    for x in it:
-        window.append(x)
-        yield window
 
 def getanswer(filename):
     #slurp

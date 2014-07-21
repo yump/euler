@@ -110,3 +110,13 @@ def prod(seq):
     for x in seq:
         result *= x
     return result
+
+def slidewin(iterable, length):
+    """Sliding window generator."""
+    it = iter(iterable)
+    window = collections.deque(itertools.islice(it,length), maxlen=length)
+    yield window
+    for x in it:
+        window.append(x)
+        yield window
+

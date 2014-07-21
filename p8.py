@@ -19,6 +19,7 @@
 import collections
 import itertools
 from functools import reduce
+from numerology import slidewin
 
 num_str = ''.join("""
 73167176531330624919225119674426574742355349194934
@@ -45,14 +46,6 @@ num_str = ''.join("""
 
 digits = [int(x) for x in num_str]
 
-def slidewin(iterable, length):
-    """Sliding window generator."""
-    it = iter(iterable)
-    window = collections.deque(itertools.islice(it,length), maxlen=length)
-    yield window
-    for x in it:
-        window.append(x)
-        yield window
 
 # Find the 13 adjacent digits with the greatest product
 if __name__ == "__main__":
